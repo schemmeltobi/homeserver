@@ -1,0 +1,20 @@
+### following https://immich.app/docs/administration/reverse-proxy#traefik-proxy-example-config
+
+
+services:
+  immich-server:
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.immich.rule=HostRegexp(`^immich\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
+      - traefik.http.routers.immich.entryPoints=websecure
+  immich-machine-learning:
+    networks:
+      - proxy
+  redis:
+    networks:
+      - proxy
+  database:
+    networks:
+      - proxy
