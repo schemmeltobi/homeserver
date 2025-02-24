@@ -3,6 +3,10 @@
 
 services:
   immich-server:
+    environment:
+      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
+      DB_USER: ${IMMICH_DB_USERNAME}
+      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
     labels:
@@ -10,9 +14,17 @@ services:
       - traefik.http.routers.immich.rule=HostRegexp(`^immich\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.immich.entryPoints=websecure
   immich-machine-learning:
+    environment:
+      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
+      DB_USER: ${IMMICH_DB_USERNAME}
+      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
   redis:
+    environment:
+      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
+      DB_USER: ${IMMICH_DB_USERNAME}
+      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
   database:

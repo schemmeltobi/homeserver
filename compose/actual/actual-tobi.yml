@@ -2,7 +2,7 @@ services:
   actual_server:
     image: docker.io/actualbudget/actual-server:latest
     networks:
-      - ip6net
+      - proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.actual.rule=HostRegexp(`^actual-tobi\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
