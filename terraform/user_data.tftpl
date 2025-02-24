@@ -1,0 +1,57 @@
+#cloud-config
+
+disable_root: true
+
+groups:
+  - docker
+
+users:
+  - name: tobi
+    groups: docker, sudo
+    lock_passwd: true
+    shell: /bin/bash
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    ssh_authorized_keys:
+      - ${public_ssh_key} 
+
+
+## Mount Storage Box
+# create .smb file
+write_files:
+- path: /home/tobi/.smb
+  permissions: '0600'
+  owner: tobi:tobi
+  content: |
+    user=${sb_user}
+    password=${sb_password}
+    domain=${sb_domain}
+
+mounts:
+- [ //${sb_domain}/backup, /mnt/media, cifs, "uid=0,/home/tobi/.smb/,iocharset=utf8,noperm", "0", "0" ]
+   
+package_reboot_if_required: true
+package_update: true
+package_upgrade: true
+
+packages:
+ - cifs-utils
+ - curl
+ - ca-certificates
+
+
+runcmd:
+  # Harden SSH access
+  - sed -i '/PermitRootLogin/d' /etc/ssh/sshd_config
+  - echo "PermitRootLogin no" >> /etc/ssh/sshd_config
+  - sed -i '/PasswordAuthentication/d' /etc/ssh/sshd_config
+  - echo "PasswordAuthentication no" >> /etc/ssh/sshd_config
+  - systemctl restart sshd
+  # Install Docker
+  - install -m 0755 -d /etc/apt/keyrings
+  - curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+  - chmod a+r /etc/apt/keyrings/docker.asc
+  - echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+  - apt-get update
+  - apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+
