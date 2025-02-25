@@ -1,0 +1,12 @@
+services:
+  whoami:
+    # A container that exposes an API to show its IP address
+    image: traefik/whoami
+    container_name: whoami
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.rule=HostRegexp(`^whoami\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
+      - traefik.http.routers.whoami.entryPoints=websecure
