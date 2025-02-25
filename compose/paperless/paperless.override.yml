@@ -1,0 +1,44 @@
+
+services:
+  broker:
+    container_name: paperless_redis
+    networks:
+      - proxy
+    volumes:
+      - ${PAPERLESS_DATA_LOCATION}/redisdata:/data
+
+
+  db:
+    container_name: paperless_db
+    networks:
+      - proxy
+    volumes:
+      - ${PAPERLESS_DATA_LOCATION}/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${PAPERLESS_DB_DATABASE_NAME}
+      POSTGRES_USER: ${PAPERLESS_DB_USERNAME}
+      POSTGRES_PASSWORD: ${PAPERLESS_DB_PASSWORD}
+
+  webserver:
+    container_name: paperless
+    networks:
+      - proxy
+    environment:
+      PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBHOST: db
+      PAPERLESS_TIME_ZONE: ${TZ}
+      PAPERLESS_OCR_LANGUAGE: deu
+      PAPERLESS_OCR_LANGUAGES: eng
+      PAPERLESS_URL: https://paperless.${INTERNAL_DOMAIN}
+      PAPERLESS_DBPASS: ${PAPERLESS_DB_PASSWORD}
+    env_file: !reset null
+    volumes:
+      - ${PAPERLESS_DATA_LOCATION}/data:/usr/src/paperless/data
+      - ${PAPERLESS_DATA_LOCATION}/media:/usr/src/paperless/media
+      - ${PAPERLESS_DATA_LOCATION}/export:/usr/src/paperless/export
+      - ${PAPERLESS_DATA_LOCATION}/consume:/usr/src/paperless/consume
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.paperless.rule=HostRegexp(`^paperless\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
+      - traefik.http.routers.paperless.entryPoints=websecure
+
