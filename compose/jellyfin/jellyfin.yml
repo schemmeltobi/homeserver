@@ -1,0 +1,17 @@
+
+services:
+  jellyfin:
+    container_name: jellyfin
+    image: jellyfin/jellyfin:latest
+    networks:
+      - proxy
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jellyfin.rule=HostRegexp(`^jellyfin\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
+      - traefik.http.routers.jellyfin.entryPoints=websecure
+    volumes:
+      - ../data/jellyfin:/config
+      - /mnt/intenso/movies:/movies
+      - /mnt/intenso/shows:/tv
+
