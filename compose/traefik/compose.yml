@@ -11,6 +11,8 @@ services:
     ports:
       - 443:443
       - 80:80
+    networks:
+      - proxy
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock:ro
