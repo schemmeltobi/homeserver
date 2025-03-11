@@ -15,7 +15,7 @@ services:
       - traefik.http.routers.jellyfin.rule=HostRegexp(`^jellyfin\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.jellyfin.entryPoints=websecure
     volumes:
-      - ../data/jellyfin:/config
+      - ~/data/jellyfin:/config
       - /mnt/intenso/movies:/movies
       - /mnt/intenso/shows:/tv
 
