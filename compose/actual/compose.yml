@@ -1,3 +1,7 @@
+networks:
+  proxy:
+    external: true
+
 services:
   actual_server:
     image: docker.io/actualbudget/actual-server:latest
