@@ -1,4 +1,9 @@
 
+networks:
+  proxy:
+    external: true
+
+
 services:
   broker:
     container_name: paperless_redis
