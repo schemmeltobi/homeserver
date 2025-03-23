@@ -16,6 +16,8 @@ services:
     env_file:
       - path: ./../../.env
         required: true
+    volumes:
+      - ~/immich-external:/mnt/media/immich-external:ro
   immich-machine-learning:
     networks:
       - proxy
@@ -28,3 +30,7 @@ services:
   database:
     networks:
       - proxy
+
+
+security_opt:
+  - no-new-privileges=true
