@@ -4,7 +4,7 @@ networks:
 
 services:
   actual_server:
-    image: docker.io/actualbudget/actual-server:latest
+    image: docker.io/actualbudget/actual-server:${ACTUAL_VERSION}
     networks:
       - proxy
     labels:
