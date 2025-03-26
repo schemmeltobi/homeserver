@@ -2,6 +2,10 @@ networks:
   proxy:
     enable_ipv6: true
     name: proxy
+    internal: true
+  outbound:
+    name: outbound
+    enable_ipv6: true
 
 services:
   traefik:
@@ -13,6 +17,7 @@ services:
       - 80:80
     networks:
       - proxy
+      - outbound
     volumes:
       # So that Traefik can listen to the Docker events
       - /var/run/docker.sock:/var/run/docker.sock:ro
