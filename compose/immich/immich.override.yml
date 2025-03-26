@@ -30,7 +30,3 @@ services:
   database:
     networks:
       - proxy
-
-
-security_opt:
-  - no-new-privileges=true
