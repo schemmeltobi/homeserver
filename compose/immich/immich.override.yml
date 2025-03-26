@@ -1,32 +1,36 @@
 ### following https://immich.app/docs/administration/reverse-proxy#traefik-proxy-example-config
 
 
+networks:
+  proxy:
+    external: true
+
 services:
   immich-server:
-    environment:
-      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
-      DB_USER: ${IMMICH_DB_USERNAME}
-      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
     labels:
       - traefik.enable=true
       - traefik.http.routers.immich.rule=HostRegexp(`^immich\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.immich.entryPoints=websecure
+    env_file:
+      - path: ./../../.env
+        required: true
+    volumes:
+      - ~/immich-external:/mnt/media/immich-external:ro
   immich-machine-learning:
-    environment:
-      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
-      DB_USER: ${IMMICH_DB_USERNAME}
-      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
+    env_file:
+      - path: ./../../.env
+        required: true
   redis:
-    environment:
-      DB_PASSWORD: ${IMMICH_DB_PASSWORD}
-      DB_USER: ${IMMICH_DB_USERNAME}
-      DB_DATABASE_NAME: ${IMMICH_DB_DATABASE_NAME}
     networks:
       - proxy
   database:
     networks:
       - proxy
+
+
+security_opt:
+  - no-new-privileges=true
