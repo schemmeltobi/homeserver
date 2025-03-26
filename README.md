@@ -24,3 +24,17 @@ Follow the instructions [here](https://immich.app/docs/install/docker-compose/#u
 ### mount jellyfin volumes
 
 make sure that jellyfin volumes are still mounted. this can happen after a restart of the server
+
+
+### The new way:
+
+```
+# traefik (needs to go first)
+docker compose  --env-file ../../.env  up -d
+# immich
+docker compose  --env-file ../../.env  --env-file .env  up -d
+# whoami / actual / jellyfin /
+docker compose  --env-file ../../.env  up -d
+# paperless
+docker compose  --env-file ../../.env  --env-file .env  up -d
+```
