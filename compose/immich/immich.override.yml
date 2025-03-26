@@ -13,6 +13,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.immich.rule=HostRegexp(`^immich\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.immich.entryPoints=websecure
+      - traefik.http.services.immich.loadbalancer.server.port=2283
     env_file:
       - path: ./../../.env
         required: true

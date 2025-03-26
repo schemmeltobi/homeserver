@@ -46,4 +46,5 @@ services:
       - traefik.enable=true
       - traefik.http.routers.paperless.rule=HostRegexp(`^paperless\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.paperless.entryPoints=websecure
+      - traefik.http.services.paperless.loadbalancer.server.port=8000
 

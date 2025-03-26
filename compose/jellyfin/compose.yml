@@ -14,6 +14,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.jellyfin.rule=HostRegexp(`^jellyfin\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.jellyfin.entryPoints=websecure
+      - traefik.http.services.jellyfin.loadbalancer.server.port=8096
     volumes:
       - ~/data/jellyfin:/config
       - /mnt/intenso/movies:/movies

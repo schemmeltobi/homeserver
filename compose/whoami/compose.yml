@@ -14,4 +14,4 @@ services:
       - traefik.enable=true
       - traefik.http.routers.whoami.rule=HostRegexp(`^whoami\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
       - traefik.http.routers.whoami.entryPoints=websecure
-#      - traefik.http.services.whoami.loadbalancer.server.port=80
+      - traefik.http.services.whoami.loadbalancer.server.port=80
