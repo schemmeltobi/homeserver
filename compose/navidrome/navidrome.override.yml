@@ -1,0 +1,15 @@
+networks:
+  proxy:
+    external: true
+
+
+services:
+  navidrome:
+    container_name: navidrome
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.navidrome.rule=HostRegexp(`^navidrome\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
+      - traefik.http.routers.navidrome.entryPoints=websecure
+      - traefik.http.services.navidrome.loadbalancer.server.port=4553
