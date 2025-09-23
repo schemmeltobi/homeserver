@@ -3,6 +3,8 @@
 networks:
   proxy:
     external: true
+  outbound:
+    external: true
 
 
 services:
@@ -10,6 +12,7 @@ services:
     container_name: navidrome
     networks:
       - proxy
+      - outbound
     labels:
       - traefik.enable=true
       - traefik.http.routers.navidrome.rule=HostRegexp(`^navidrome\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
