@@ -10,6 +10,8 @@ services:
     environment:
       ND_SPOTIFY_ID: ${ND_SPOTIFY_ID}
       ND_SPOTIFY_SECRET: ${ND_SPOTIFY_SECRET}
+      ND_ENABLEFAVOURITES: false
+      ND_ENABLESTARRATING: false
       # Optional: put your config options customization here. Examples:
       # ND_LOGLEVEL: debug
     volumes:
