@@ -1,6 +1,8 @@
 networks:
   proxy:
     external: true
+  outbound:
+    external: true
 
 
 services:
@@ -19,4 +21,4 @@ services:
       - ~/data/jellyfin:/config
       - /mnt/intenso/movies:/movies
       - /mnt/intenso/shows:/tv
-
+      - /mnt/adata/:/media
