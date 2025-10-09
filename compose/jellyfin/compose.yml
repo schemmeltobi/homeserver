@@ -11,7 +11,8 @@ services:
     image: jellyfin/jellyfin:${JELLYFIN_VERSION}
     networks:
       - proxy
-    restart: unless-stopped
+      - outbound
+    restart: on-failure
     labels:
       - traefik.enable=true
       - traefik.http.routers.jellyfin.rule=HostRegexp(`^jellyfin\.(${INTERNAL_DOMAIN}|${PUBLIC_DOMAIN})$`)
