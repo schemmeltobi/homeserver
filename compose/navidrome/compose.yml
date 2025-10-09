@@ -16,4 +16,4 @@ services:
       # ND_LOGLEVEL: debug
     volumes:
       - "${NAVIDROME_DATA_LOCATION}:/data"
-      - "${NAVIDROME_MUSIC_LOCATION_1}:/music:ro"
+      - "${NAVIDROME_MUSIC_LOCATION_2}:/music:ro"
