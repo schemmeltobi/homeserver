@@ -14,3 +14,12 @@ spec:
     path: k8s/whoami
     repoURL: https://github.com/schemmeltobi/homeserver
     targetRevision: HEAD
+
+---
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: whoami
+  labels:
+    name: whoami
