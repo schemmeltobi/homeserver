@@ -11,8 +11,8 @@ services:
       - pihole
     # For DHCP it is recommended to remove these ports and instead add: network_mode: "host"
     ports:
-      - "192.168.177.12:53:53/tcp"
-      - "192.168.177.12:53:53/udp"
+      - "10.11.12.13:53:53/tcp"
+      - "10.11.12.13:53:53/udp"
       - "8080:80/tcp"
     environment:
       TZ: 'Europe/Amsterdam'
