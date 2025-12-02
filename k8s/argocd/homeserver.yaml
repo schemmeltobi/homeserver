@@ -66,19 +66,19 @@ stringData:
   project: homeserver
 
 
----
+# ---
 
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: app-of-apps
-  namespace: argocd
-spec:
-  project: homeserver # needs to be the same as defined in the top block of this yaml file
-  source:
-    repoURL: https://github.com/schemmeltobi/homeserver.git
-    targetRevision: HEAD
-    path: k8s/argocd/app-of-apps
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: argocd
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# metadata:
+#   name: app-of-apps
+#   namespace: argocd
+# spec:
+#   project: homeserver # needs to be the same as defined in the top block of this yaml file
+#   source:
+#     repoURL: https://github.com/schemmeltobi/homeserver.git
+#     targetRevision: HEAD
+#     path: k8s/argocd/app-of-apps
+#   destination:
+#     server: https://kubernetes.default.svc
+#     namespace: argocd
