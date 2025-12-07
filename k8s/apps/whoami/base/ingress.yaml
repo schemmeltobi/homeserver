@@ -6,7 +6,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: whoami.$IP.sslip.io
+    - host: whoami.192.168.64.2.sslip.io
       http:
         paths:
           - path: /
