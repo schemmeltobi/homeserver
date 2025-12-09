@@ -94,3 +94,5 @@ logs:
 metrics:
   prometheus:
     enabled: true
+
+commonLabels: {"does-this": "work"}
