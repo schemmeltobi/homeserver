@@ -96,3 +96,5 @@ metrics:
     enabled: true
 
 commonLabels: {"does-this": "work"}
+deployment:
+  enabled: false
