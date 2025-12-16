@@ -12,7 +12,6 @@ spec:
       revision: HEAD
       directories:
       - path: k8s/apps/*/envs/kenobi
-      - path: k8s/apps/*/envs/kenobi      
   template:      
     metadata:
       name: '{{index .path.segments 2}}' 
