@@ -1,0 +1,31 @@
+traefik:
+
+  # Configure Network Ports and EntryPoints
+  # EntryPoints are the network listeners for incoming traffic.
+  ports:
+    # Defines the HTTP entry point named 'web'
+    web:
+      port: 80
+      # Instructs this entry point to redirect all traffic to the 'websecure' entry point
+      redirections:
+        entryPoint:
+          to: websecure
+          scheme: https
+          permanent: true
+
+  # Defines the HTTPS entry point named 'websecure'
+  websecure:
+    port: 443
+
+
+  # Enable Observability
+  logs:
+    general:
+      level: DEBUG
+    # This enables access logs, outputting them to Traefik's standard output by default. The [Access Logs Documentation](https://doc.traefik.io/traefik/observability/access-logs/) covers formatting, filtering, and output options.
+    access:
+      enabled: true
+  # Enables Prometheus for Metrics
+  metrics:
+    prometheus:
+      enabled: true
