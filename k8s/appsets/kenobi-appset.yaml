@@ -17,7 +17,7 @@ spec:
       name: '{{index .path.segments 3}}' 
     spec:
       # The project the application belongs to.
-      project: homeserver
+      project: default
 
       # Source of the application manifests
       source:
