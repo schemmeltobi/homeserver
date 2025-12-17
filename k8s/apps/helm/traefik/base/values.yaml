@@ -1,4 +1,9 @@
 traefik:
+  # Enables access to the traefik dashboard, but it is not exposed. To access run port-forward
+  # to port 8080 on the traefik pod and go to http://localhost:8080/dashboard/
+  ingressRoute:
+    dashboard:
+      enabled: true
 
   # Configure Network Ports and EntryPoints
   # EntryPoints are the network listeners for incoming traffic.
@@ -29,3 +34,4 @@ traefik:
   metrics:
     prometheus:
       enabled: true
+
