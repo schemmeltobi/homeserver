@@ -1,6 +1,10 @@
 # environment variables
 .env 
 
+# secret files
+*.env
+*-unsealed.yaml
+
 terraform/*.tfstate
 terraform/.terraform.lock.hcl
 terraform/.terraform/*
