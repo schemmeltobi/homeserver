@@ -1,0 +1,4 @@
+traefik:
+  envFrom:
+    - secretRef:
+        name: porkbun-api-access
