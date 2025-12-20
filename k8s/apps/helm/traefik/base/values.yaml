@@ -40,10 +40,10 @@ traefik:
       acme:
         email: "mail@mail.com"
         storage: "/data/acme.json"
-        # LetsEncrypt Staging server (used for testing)
-        caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
-        # # LetsEncrypt Production server
-        # caserver: "https://acme-v02.api.letsencrypt.org/directory"
+        # # LetsEncrypt Staging server (used for testing)
+        # caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
+        # LetsEncrypt Production server
+        caserver: "https://acme-v02.api.letsencrypt.org/directory"
         dnsChallenge: 
           provider: "porkbun"
           propagation:
