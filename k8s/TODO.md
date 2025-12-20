@@ -1,0 +1,4 @@
+- Find a way to do nice templating using global variables like the domain name across envs
+- Persistent storage for all places necessary:
+    - traefik TLS certs
+- Revisit the idea of an Argo AppProject
