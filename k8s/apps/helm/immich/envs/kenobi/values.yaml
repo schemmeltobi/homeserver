@@ -1,0 +1,3 @@
+pvc:
+  server:
+    storage: "3Gi"
