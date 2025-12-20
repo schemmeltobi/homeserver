@@ -8,10 +8,10 @@ spec:
   entryPoints:
     - websecure
   routes:
-  - match: Host(`whoami.happyandhairy.com`)
-    kind: Rule
-    services:
-    - name: whoami
-      port: 80
+    - match: Host(`domain.invalid`) # needs to be replaced by patch
+      kind: Rule
+      services:
+      - name: whoami
+        port: 80
   tls:
     certResolver: letsencrypt
