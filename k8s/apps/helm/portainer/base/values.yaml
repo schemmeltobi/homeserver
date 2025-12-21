@@ -1,0 +1,9 @@
+portainer:
+  service:
+    type: ClusterIP
+    # httpPort: 9000
+    # httpsPort: 9443
+    # httpNodePort: ""
+    # httpsNodePort: ""
+    # edgePort: 8000
+    # edgeNodePort: ""
