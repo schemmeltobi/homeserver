@@ -1,0 +1,8 @@
+[[repo]]
+name = "homeserver"
+description = "Tobi's homeserver"
+tags = []
+[repo.config]
+git_provider = "github.com"
+git_account = ""
+repo = "schemmeltobi/homeserver"
