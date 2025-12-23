@@ -35,6 +35,3 @@ immich:
     enabled: true
 psql:
   storage: "1Gi"
-
-server:
-  domain: immich.happyandhairy.com
