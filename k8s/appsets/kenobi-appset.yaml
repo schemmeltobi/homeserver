@@ -55,8 +55,8 @@ spec:
   - git:
       repoURL: https://github.com/schemmeltobi/homeserver
       revision: HEAD
-      directories:
-      - path: k8s/apps/helm/*/envs/kenobi
+      files:
+      - path: k8s/apps/helm/*/envs/kenobi/values.yaml
   template:      
     metadata:
       name: '{{index .path.segments 3}}' 
