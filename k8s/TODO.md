@@ -2,3 +2,4 @@
 - Persistent storage for all places necessary:
     - traefik TLS certs
 - Revisit the idea of an Argo AppProject
+- Get traefik Production ready (dashboard access)
