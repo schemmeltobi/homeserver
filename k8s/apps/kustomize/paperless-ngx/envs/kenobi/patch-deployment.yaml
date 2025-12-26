@@ -1,0 +1,17 @@
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value: 
+    name: PAPERLESS_URL
+    value: https://paperless.happyandhairy.com
+
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value: 
+    name: PAPERLESS_OCR_LANGUAGE
+    value: deu
+
+- op: add
+  path: /spec/template/spec/containers/0/env/-
+  value: 
+    name: PAPERLESS_OCR_LANGUAGES
+    value: eng

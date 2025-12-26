@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paperless-ngx
+  labels:
+    app: paperless-ngx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: paperless-ngx
+  template:
+    metadata:
+      labels:
+        app: paperless-ngx
+    spec:
+      containers:
+      - name: paperless-ngx
+        image: ghcr.io/paperless-ngx/paperless-ngx:2.20.3
+        ports:
+        - containerPort: 8000
+          name: http
+          protocol: TCP
+        env:
+          - name: PAPERLESS_REDIS
+            value: redis://redis:6379
+          - name: PAPERLESS_DBHOST
+            valueFrom:
+              secretKeyRef:
+                name: paperless-db-app
+                key: host
+          - name: PAPERLESS_DBENGINE
+            value: postgresql
+          - name: PAPERLESS_DBPORT
+            valueFrom:
+              secretKeyRef:
+                name: paperless-db-app
+                key: port
+          - name: PAPERLESS_DBNAME
+            valueFrom:
+              secretKeyRef:
+                name: paperless-db-app
+                key: dbname
+          - name: PAPERLESS_DBUSER
+            valueFrom:
+              secretKeyRef:
+                name: paperless-db-app
+                key: user
+          - name: PAPERLESS_DBPASS
+            valueFrom:
+              secretKeyRef:
+                name: paperless-db-app
+                key: password
